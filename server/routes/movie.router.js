@@ -4,7 +4,7 @@ const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
 
-  const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+  const query = `SELECT * FROM movies ORDER BY "title" ASC;`;
   pool.query(query)
     .then(result => {
       res.send(result.rows);
@@ -17,16 +17,27 @@ router.get('/', (req, res) => {
 });
 
 // GET request for movie details
+// Need some version of the following command to get genres on the DOM:
+
+/*
+SELECT * FROM movies
+JOIN movies_genres ON movies_genres.movie_id = movies.id
+JOIN genres ON movies_genres.genre_id = genres.id;
+*/
 router.get('/:id', (req, res) => {
 
-  const query = `SELECT * FROM movies WHERE "id" = $1 ORDER BY "title" ASC`;
+  // const query = `SELECT * FROM movies WHERE "id" = $1 ORDER BY "title" ASC;`;
+  const query = `SELECT * FROM movies
+  JOIN movies_genres ON movies_genres.movie_id = movies.id
+  JOIN genres ON movies_genres.genre_id = genres.id
+  WHERE movie_id = $1;`;
   pool.query(query, [req.params.id])
     .then(result => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get all movies', err);
-      res.sendStatus(500)
+      console.log('Error getting movie details', err);
+      res.sendStatus(500);
     })
 
 });

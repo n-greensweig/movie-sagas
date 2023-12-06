@@ -37,7 +37,7 @@ function* fetchMovieDetails(action) {
     // Get movie-specific data from the DB
     try {
         const details = yield axios.get(`/api/movie/${id}`);
-        yield put({ type: 'SET_DETAILS', payload: details.data[0] });
+        yield put({ type: 'SET_DETAILS', payload: details.data });
     } catch (error) {
         console.error('Error getting movie details', error);
         alert('Something went wrong.');
@@ -68,7 +68,7 @@ const genres = (state = [], action) => {
     }
 };
 
-// Used to store the movie genres
+// Used to store the movie details
 const details = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DETAILS':
