@@ -1,4 +1,8 @@
 .movies {
-    display : flex;
+    display: flex;
     flex-wrap: wrap;
+}
+
+.hover:hover {
+    cursor: pointer;
 }
