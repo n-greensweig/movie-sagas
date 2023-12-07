@@ -7,7 +7,7 @@ import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 function App() {
   return (
     <div className="App">
-      <h1>The Movies Saga!</h1>
+        <h1>The Movies Saga!</h1>
       <Router>
         <Switch>
 
@@ -21,7 +21,7 @@ function App() {
           </Route>
 
           {/* Add Movie page */}
-          
+
         </Switch>
       </Router>
     </div>
