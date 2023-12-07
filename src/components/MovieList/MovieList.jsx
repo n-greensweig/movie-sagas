@@ -25,39 +25,47 @@ function MovieList() {
     return (
         <>
 
-            <Typography variant='h4'>Movie List</Typography>
+            <Typography variant='h4' marginBottom={'10px'}>Movie List</Typography>
 
-            <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+            <div style={{ textAlign: 'center' }}>
+                <Grid container
+                    alignItems={'center'}
+                    justifyContent={'space-evenly'}
+                    // textAlign={'center'}
+                >
 
 
-                <section className="movies">
+                    <section className="movies">
 
-                    {movies.map(movie => {
-                        return (
+                        {movies.map(movie => {
+                            return (
 
-                            <Grid item margin={'10px'} className='hover'
-                                onClick={() => handleClick(movie.id)}
-                            >
-                                <Paper elevation={12}>
-                                    <Card style={{height: '400px'}}>
-                                        <CardContent>
+                                <Grid item margin={'10px'} className='hover'
+                                    onClick={() => handleClick(movie.id)}
+                                    alignItems={'center'}
+                                    justifyContent={'center'}
+                                >
+                                    <Paper elevation={12}>
+                                        <Card style={{ height: '400px', width:'250px' }}>
+                                            <CardContent>
 
-                                            <div key={movie.id}>
-                                                <h3>{movie.title}</h3>
-                                                <img src={movie.poster} alt={movie.title} />
-                                            </div>
+                                                <div key={movie.id}>
+                                                    <h3>{movie.title}</h3>
+                                                    <img src={movie.poster} alt={movie.title} />
+                                                </div>
 
-                                        </CardContent>
-                                    </Card>
-                                </Paper>
-                            </Grid>
-                        );
+                                            </CardContent>
+                                        </Card>
+                                    </Paper>
+                                </Grid>
+                            );
 
-                    })}
+                        })}
 
-                </section>
+                    </section>
 
-            </Grid>
+                </Grid>
+            </div>
 
         </>
     );
